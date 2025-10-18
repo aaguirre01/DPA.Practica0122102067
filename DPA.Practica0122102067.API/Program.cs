@@ -1,6 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var _configuration = builder.Configuration;
+var _connectionString = _configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DPA.Practica0122102067.CORE.Infrastructure.Data.UniversidadDbContext>(options =>
+    options.UseSqlServer(_connectionString)
+);
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
